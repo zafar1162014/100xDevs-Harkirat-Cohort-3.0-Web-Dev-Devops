@@ -1,0 +1,458 @@
+body {
+    background-color: #0e0e0e;
+    color: white;
+}
+
+body.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+.topIcon {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+   background-color: #0e0e0e;
+
+}
+body.light-theme .topIcon {
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+ background-color: #ffffff;
+
+
+}
+
+.layer{
+    display: flex; 
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.vsCodelog {
+    width: 25px;
+    float: left;
+    padding-right: 10px;
+}
+
+.vsCode {
+    color: #e9eaeb;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    font-family: "Helvetica Neue";
+    cursor: pointer;
+    text-decoration: none;
+}
+body.light-theme .vsCode {
+    color: #000000;
+  
+}
+.vsCode a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.toplink {
+    color: gray;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+}
+body.light-theme .toplink {
+    color: #000000;
+}
+
+.toplink:hover {
+    color: white;
+}
+body.light-theme .toplink:hover {
+    color: #555555;
+}
+.toplink a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.toplink a:hover {
+    color: inherit;
+}
+.main-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.night {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #414141;
+    padding: 3px;
+    border-radius: 6px;
+    color: white;
+    
+}
+body.light-theme .input-container {
+    border: 1px solid #c0c0c0;
+    color: #000000;
+    
+}
+.input-icon {
+    padding-top: 4px;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px; 
+   
+    
+}
+body.light-theme .input-icon {
+    background-color: #ffffff; 
+}
+
+.input {
+    border: gray;
+    outline: none;
+    padding: 5px;
+    background-color: #0e0e0e;
+    border-radius: 5px;
+    width: 150px;
+    max-width: 200px;
+}
+body.light-theme .input {
+    background-color: #ffffff;
+}
+.button_Download {
+    color: white;
+    background-color:  #0078d4;
+   
+    padding: 3px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #1068b1;
+    font-size: 20px;
+
+}
+body.light-theme .button_Download {
+    background-color: #0078d7;
+    color: #000000;
+}
+.button_Download:hover {
+    background-color: #055595;
+}
+body.light-theme .button_Download:hover {
+     background-color: #055595;
+
+}
+.container_1{
+  display: flex; 
+  padding-top: 10px;
+  padding-right: 100px; 
+  justify-content: space-between;
+  padding-left: 100px;
+}
+.class_1 {
+            color: #b3b2b2;
+            border: 1px solid #555555;
+            border-radius: 25px; 
+            background-color: #0a2020; 
+            font-weight: 28px;
+            letter-spacing: 0.5px;
+            margin-top: 80px;
+            padding: 10px 10px 10px 10px;
+
+        }
+
+body.light-theme .class_1{
+  color: #282727;
+  background-color: #ffffff;
+  border: 1.5px solid #c2c2b680;
+  
+
+}
+  
+ .class_2{
+color: white;
+background-color: #0078d7;
+ border-radius: 5px;
+ cursor: pointer;
+  border : 1px solid #0078d7;
+ font-size: 20px;
+ padding-left: 15px;
+ padding-right: 25px;
+ padding-top: 15px;
+ padding-bottom:15px ;
+ margin: 20px 0px 20px 0px;
+ }
+      
+
+.class_2:hover{
+background-color: #055595;
+}
+
+.text_1 {
+    color: #e9eaeb;
+    font-size: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: -0.2px; 
+    line-height: 0.5; 
+    font-style: bold;
+    font-weight: 550;
+}
+body.light-theme .text_1 {
+    color: #000000;
+}
+.link {
+    color: #0078d7;
+    font-size: 16px;
+}
+
+.text {
+    color: white;
+    font-size: 16px;
+}
+body.light-theme .text{
+    color: #000000;
+}
+.license {
+    color: grey;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+.license-text {
+    margin: 0;
+}
+
+.license-link {
+    cursor: pointer;
+    color: #0078d7;
+    padding: 0 10px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.license-link h6 {
+    display: inline;
+    margin: 0;
+}
+.bold-gray-line {
+    border: 0;
+    height: 0.1px; 
+    background-color: #575757;
+    margin-top: 90px;
+}
+
+.language_image_1 {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.language_text {
+    font-size: 20px;
+    padding-left: 10px; 
+    display: inline-block; 
+    vertical-align: middle; 
+    padding-right: 170px;
+    color: #e9eaeb;
+
+}
+body.light-theme .language_text{
+       color: black;
+
+}
+.language{
+    margin-top: 90px;
+     display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    padding-left: 100px;
+    padding-right: 80px;
+     margin-bottom: 160px;
+}
+.text_2 {
+    color: #e9eaeb;
+    font-size: 35px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: -0.2px; 
+    line-height: 0.5; 
+    font-style: bold;
+    font-weight: 500;
+}
+body.light-theme .text_2{
+    background-color: white;
+    color: black;
+}
+.class_3 {
+            color: #c0bbbb;
+            background-color: #0e0e0e;
+            font-weight: 30px;
+            letter-spacing: 0.8px;
+            margin-top: 10px;
+            line-height: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+body.light-theme .class_3 {
+    color: #000000;
+    background-color: white;
+}
+.block_link {
+text-decoration: none;
+ color: inherit;
+}
+.block {
+    height: 140px;
+    width: 280px;
+    border : 1px solid #363636;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #1e1c1c;;
+
+}
+.block:hover{
+    border: 1px solid  #b8b5b5;
+
+}
+body.light-theme .block:hover{
+    border: 1px solid  #3d3c3c;
+
+}
+body.light-theme .block {
+    border: 1px solid  #e5e3e3;
+    background-color: #fefbfb;
+}
+.block-title {
+    color: #f7fbfc;
+    font-size: 18px;
+    font-weight: 20px;
+    padding-top: 10px;
+}
+body.light-theme .block-title {
+    color: #000000;
+
+}
+.block_image {
+    height: 35px; 
+    width: 35px; 
+    padding: 20px 28px 0px 28px;
+
+}
+.block_text {
+    font-weight: 38px;
+    padding-left: 80px;
+    letter-spacing: 1.8px;
+    line-height: 25px;
+    color: #7b7b7b;
+}
+.language_image_2{
+  height: 100px; 
+  width: 280px;
+border-radius: 20px;
+padding: 10px;
+cursor: pointer;
+}
+
+.text_3{
+    color: #a3a0a0;
+    display: flex;
+    margin-left: 840px;
+}
+body.light-theme .text_3{
+    color: #000000;
+}
+.link_2{
+    color: #0078d7;
+}
+.link_3{
+    color: #0078d7;
+     padding-top: 15px; 
+     padding-right: 10px;
+     letter-spacing: 1.8px;
+}
+.Box{
+    border:1px #8e8e8e solid;
+    height: 230px;
+    width: 330px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.Box:hover{
+    border:2px #8e8e8e solid;
+   
+}
+.box_images{
+   width: 30px;
+    height: 30px; 
+    margin: 15px; 
+    background-color:
+     #000000; 
+     border-radius: 5px;
+     cursor: pointer;
+}
+.box_image_link{
+text-decoration: none;
+ color: inherit;
+}
+body.light-theme .box_images{
+    background-color: white;
+}
+.feature-card-title{
+    padding: 0px 15px 0px 15px;
+    color: #a6a2a2;
+}
+body.light-theme .feature-card-title{
+    color: #370c0c;
+}
+.feature-card-text{
+    font-size: 15px;
+    padding-left: 18px;
+    line-break: -1.5px;
+    font-weight: 80px;
+    color: #a6a2a2;
+    letter-spacing: 0.8px;
+
+}
+body.light-theme .feature-card-text{
+       color: #370c0c;
+}
+.button_link {
+    text-decoration: none; 
+    color: white;
+}
+
+body.light-theme .button_link {
+    text-decoration: none; 
+    color: #000000;
+}
+
+.button_text {
+    color: #acacac;
+    margin: 0; 
+    padding-right: 20px;
+    margin-bottom: 150px;
+}
+
+body.light-theme .button_text {
+    color: #000000; 
+}
