@@ -1,6 +1,3 @@
-// function sum(n) {
-//   return (n * (n + 1)) / 2;
-// }
 
 // part 1
 // function sum(a, b) {
@@ -10,6 +7,9 @@
 // let ans = sum(2, 3)
 // console.log(ans);
 //part 2
+// function sum(n) {
+//   return (n * (n + 1)) / 2;
+// }
 // function sum(n) {
 // 	let ans = 0;
 // 	for (let i = 1; i <= n; i++) {
@@ -136,5 +136,3 @@ for (let i = 0; i < 100000000; i++)
     c = c + 1;
 }
 console.log("Expensive operation done");
-
-
