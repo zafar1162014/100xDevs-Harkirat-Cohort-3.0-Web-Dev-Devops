@@ -32,8 +32,4 @@
     <li><strong>Learn About Classes:</strong> Study how classes encapsulate data and behavior, making it easier to create organized and maintainable code.</li>
 </ul>
 
-<h2>Additional Resources</h2>
-<ul>
-    <li><strong>Documentation:</strong> Refer to official JavaScript documentation and tutorials for in-depth explanations and examples.</li>
-    <li><strong>Online Courses:</strong> Consider enrolling in online courses that cover advanced JavaScript topics for hands-on learning.</li>
-</ul>
+
