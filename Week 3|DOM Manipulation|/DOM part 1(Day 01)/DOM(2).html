@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>DOM Manipulation Example</title>
+	</head>
+	<body>
+		<h1>DOM Manipulation</h1>
+		<button id="addnew">New element</button>
+		<button class="remove">RemoveChild</button>
+		<button class="replace">replace lattest child</button>
+		<button class="text">Write a Text</button>
+		<div class="start"></div>
+		<script>
+			let index = 0;
+			// Create new element
+			document.getElementById('addnew').onclick = function () {
+				let newElement = document.createElement('p');
+				newElement.setAttribute('id', `id_${index}`);
+				newElement.innerText = 'New Element';
+				document.querySelector('.start').appendChild(newElement);
+				index++;
+			};
+			// removeChild
+			document.querySelector('.remove').onclick = function () {
+				if (index > 0) {
+					const elementToRemove = document.getElementById(`id_${index - 1}`);
+					if (elementToRemove) {
+						elementToRemove.parentNode.removeChild(elementToRemove);
+						index--;
+					}
+				}
+			};
+			// replace lattest child
+			document.querySelector('.replace').onclick = function () {
+				if (index <= 0) {
+					return;
+				}
+				let oldChild = document.getElementById(`id_${index - 1}`);
+				if (oldChild) {
+					let newChild = document.createElement('p');
+					newChild.setAttribute('id', `id_${index - 1}`);
+					newChild.innerText = 'Replace text';
+					oldChild.parentNode.replaceChild(newChild, oldChild);
+				}
+			};
+			// write a text
+			document.querySelector('.text').onclick = function () {
+				document.write('HI how are you');
+			};
+		</script>
+	</body>
+</html>

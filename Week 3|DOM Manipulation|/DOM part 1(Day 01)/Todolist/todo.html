@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Todo List</title>
+		<link
+			rel="stylesheet"
+			href="todo.css" />
+	</head>
+	<body>
+		<!-- Overlay -->
+		<div class="overlay"></div>
+
+		<!-- Custom Alert Box -->
+		<div class="alert-box">
+			<p>Please enter a valid todo item!</p>
+			<button onclick="closeAlert()">OK</button>
+		</div>
+		<!--  start -->
+		<div class="outer_container">
+			<div class="display_container">
+				<h5>&copy; Muhammad Zafar Ul Haq</h5>
+
+				<h1>Todo List</h1>
+				<div style="display: flex; align-items: center">
+					<input
+						placeholder="Enter a Todo List"
+						class="input_block"
+						onkeydown="handleKeyDown(event)" />
+					<button
+						class="todo_button"
+						onclick="validateInput();">
+						Add Todo
+					</button>
+				</div>
+				<!-- Container to hold todo items -->
+				<div id="todoContainer"></div>
+			</div>
+		</div>
+		<script src="todo.js"></script>
+	</body>
+</html>

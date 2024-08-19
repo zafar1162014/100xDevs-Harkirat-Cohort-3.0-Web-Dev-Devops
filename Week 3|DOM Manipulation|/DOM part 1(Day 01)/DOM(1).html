@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>JavaScript Methods and Properties Example</title>
+		<style>
+			.highlight {
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="title">JavaScript Methods and Properties</h1>
+
+		<p class="description">
+			This example demonstrates various JavaScript methods and properties to
+			access and modify HTML elements.
+		</p>
+
+		<p id="example1">
+			This paragraph will be modified using
+			<code>document.getElementById</code>.
+		</p>
+		<p class="class">how are you</p>
+		<p class="example">
+			This paragraph will be modified using
+			<code>document.getElementsByClassName</code>.
+		</p>
+		<p class="example">
+			Another paragraph to show
+			<code>document.getElementsByClassName</code> usage.
+		</p>
+
+		<button onclick="changeContent()">Change Content</button>
+
+		<script>
+			function changeContent() {
+				// Using document.getElementById
+				var titleElement = document.getElementById('title');
+				titleElement.innerHTML = 'Updated Title';
+
+				// Using document.getElementsByTagName
+				var paragraphs = document.getElementsByTagName('p');
+				for (var i = 0; i < paragraphs.length; i++) {
+					paragraphs[i].style.color = 'blue';
+				}
+				// Change the attribute value of an HTML element
+				elementById.setAttribute('class', 'newClass');
+				// Using document.getElementsByClassName
+				var exampleElements = document.getElementsByClassName('example');
+				for (var i = 0; i < exampleElements.length; i++) {
+					exampleElements[i].setAttribute('data-modified', 'true');
+					exampleElements[i].style.fontWeight = 'bold';
+				}
+
+				// Changing the inner HTML of a specific element
+				var specificElement = document.querySelector('.description');
+				specificElement.innerHTML =
+					'The content has been updated to demonstrate JavaScript properties and methods.';
+			}
+		</script>
+	</body>
+</html>

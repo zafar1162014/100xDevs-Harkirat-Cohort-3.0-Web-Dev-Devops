@@ -97,7 +97,7 @@ orderStatus("not_placed", 5000).then(Check).catch(Check);
 //     console.log("Hello, " + userName + "!");
 //     rl.close();
 // });
-
+// then and catch
 const fs = require("fs");
 
 function readFilePromisified(filePath) {
