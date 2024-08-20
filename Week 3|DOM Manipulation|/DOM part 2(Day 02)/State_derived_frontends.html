@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>State Derived Frontends</title>
+	</head>
+	<body>
+		<input
+			type="text"
+			placeholder="Enter a todo text"
+			onkeydown="keyDown(event);" />
+		<button onclick="addTodo();">Add Todo</button>
+		<div class="parent"></div>
+
+		<script>
+			let todos = [];
+			function keyDown(event) {
+				if (event.key === 'Enter') {
+					addTodo();
+				}
+			}
+
+			function checkInvalidInput(input) {
+				let Number = /\d/;
+				let specialChar = /[^\w\s]/;
+				if (Number.test(input) && specialChar.test(input)) {
+					alert('Enter valid input');
+					return false;
+				} else if (Number.test(input) || specialChar.test(input)) {
+					alert('Enter valid input');
+					return false;
+				}
+
+				return true;
+			}
+			function checkDuplicate(input) {
+				return todos.some(
+					(todo) => todo.title.toLowerCase() === input.toLowerCase()
+				);
+			}
+			function addTodo() {
+				let text = document.querySelector('input').value;
+				if (checkInvalidInput(text) === false) {
+					document.querySelector('input').value = '';
+					return;
+				}
+				if (checkDuplicate(text)) {
+					alert('This todo already exists.');
+					return;
+				}
+				if (text.trim() !== '') {
+					todos.push({
+						title: text.trim(),
+					});
+					document.querySelector('input').value = '';
+					render();
+				} else {
+					alert('please Enter a valid to do ');
+				}
+			}
+			function deleteToDo(index) {
+				todos.splice(index, 1);
+				render();
+			}
+			function render() {
+				let parent = document.querySelector('.parent');
+				parent.innerHTML = '';
+				todos.forEach((todo, index) => {
+					let newpara = document.createElement('p');
+					newpara.textContent = todo.title;
+					let deleteButton = document.createElement('button');
+					deleteButton.textContent = 'Delete';
+					deleteButton.onclick = function () {
+						deleteToDo(index);
+					};
+					newpara.appendChild(deleteButton);
+					parent.appendChild(newpara);
+				});
+			}
+		</script>
+	</body>
+</html>
