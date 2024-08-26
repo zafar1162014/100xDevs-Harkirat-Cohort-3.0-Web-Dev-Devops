@@ -1,0 +1,19 @@
+{
+	"name": "todo-cli",
+	"version": "1.0.0",
+	"main": "todo-cli/index.js",
+	"scripts": {
+		"start": "node src/index.js"
+	},
+	"bin": {
+		"todo-cli": "./todo-cli/index.js"
+	},
+	"dependencies": {
+		"commander": "^12.1.0"
+	},
+	"type": "module",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "A CLI tool for managing a todo list"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "counter",
+	"version": "1.0.0",
+	"main": "A1-creating-cli.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"bin": {
+		"counter": "./A1-creating-cli.js"
+	},
+	"dependencies": {
+		"commander": "^12.1.0"
+	},
+	"type": "module",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": ""
+}
