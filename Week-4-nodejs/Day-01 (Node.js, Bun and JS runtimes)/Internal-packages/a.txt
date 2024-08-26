@@ -1,0 +1,2 @@
+Hi from a.txt 
+how are you 
