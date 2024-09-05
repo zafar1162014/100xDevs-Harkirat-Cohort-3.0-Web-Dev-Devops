@@ -1,2 +1,7 @@
 .DS_Store
-.DS_Store
+# Ignore all node_modules folders
+**/node_modules/
+
+# Ignore all package-lock.json files
+**/package-lock.json
+
