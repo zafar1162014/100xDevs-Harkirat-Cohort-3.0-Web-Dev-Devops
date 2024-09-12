@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>TODO App</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+		<script>
+			const API_URL = 'http://localhost:3000';
+
+			document.addEventListener('DOMContentLoaded', () => {
+				if (localStorage.getItem('token')) {
+					showTodos();
+					document.getElementById('authForms').style.display = 'none';
+					document.getElementById('todoSection').style.display = 'block';
+				} else {
+					document.getElementById('authForms').style.display = 'block';
+					document.getElementById('todoSection').style.display = 'none';
+				}
+			});
+
+			async function signup() {
+				const username = document.getElementById('signupUsername').value;
+				const password = document.getElementById('signupPassword').value;
+				try {
+					await axios.post(`${API_URL}/signup`, { username, password });
+					alert('Signup successful! Please signin.');
+					showSigninForm();
+				} catch (error) {
+					alert('Signup failed');
+				}
+			}
+
+			async function signin() {
+				const username = document.getElementById('signinUsername').value;
+				const password = document.getElementById('signinPassword').value;
+				try {
+					const response = await axios.post(`${API_URL}/signin`, {
+						username,
+						password,
+					});
+					localStorage.setItem('token', response.data.token);
+					showTodos();
+					document.getElementById('authForms').style.display = 'none';
+					document.getElementById('todoSection').style.display = 'block';
+				} catch (error) {
+					alert('Signin failed');
+				}
+			}
+
+			async function showTodos() {
+				try {
+					const token = localStorage.getItem('token');
+					const response = await axios.get(`${API_URL}/todos`, {
+						headers: { Authorization: `Bearer ${token}` },
+					});
+					const todos = response.data;
+					const todoList = document.getElementById('todoList');
+					todoList.innerHTML = '';
+					todos.forEach((todo, index) => {
+						todoList.innerHTML += `
+              <li>
+                <input type="checkbox" ${
+									todo.done ? 'checked' : ''
+								} onclick="updateTodo(${index}, { done: this.checked })" />
+                <span>${todo.text}</span>
+                <button onclick="updateTodoText(${index})">Update</button>
+                <button onclick="deleteTodo(${index})">Delete</button>
+              </li>
+            `;
+					});
+				} catch (error) {
+					console.error('Error fetching todos:', error);
+				}
+			}
+
+			async function createTodo() {
+				const text = document.getElementById('todoText').value.trim();
+				if (!text) return alert('Please enter a valid todo.');
+
+				try {
+					const token = localStorage.getItem('token');
+					const response = await axios.get(`${API_URL}/todos`, {
+						headers: { Authorization: `Bearer ${token}` },
+					});
+
+					// Check if the TODO already exists
+					const todos = response.data;
+					if (
+						todos.some((todo) => todo.text.toLowerCase() === text.toLowerCase())
+					) {
+						return alert('This TODO already exists.');
+					}
+
+					await axios.post(
+						`${API_URL}/todos`,
+						{ text },
+						{ headers: { Authorization: `Bearer ${token}` } }
+					);
+					showTodos();
+					document.getElementById('todoText').value = ''; // Clear input after adding
+				} catch (error) {
+					console.error('Error creating todo:', error);
+				}
+			}
+
+			async function updateTodoText(index) {
+				const newText = prompt('Enter new text for the TODO:');
+				if (!newText) return;
+
+				try {
+					const token = localStorage.getItem('token');
+					await axios.patch(
+						`${API_URL}/todos/${index}`,
+						{ text: newText },
+						{
+							headers: { Authorization: `Bearer ${token}` },
+						}
+					);
+					showTodos();
+				} catch (error) {
+					console.error('Error updating todo:', error);
+				}
+			}
+
+			async function updateTodo(index, updates) {
+				try {
+					const token = localStorage.getItem('token');
+					await axios.patch(`${API_URL}/todos/${index}`, updates, {
+						headers: { Authorization: `Bearer ${token}` },
+					});
+					showTodos();
+				} catch (error) {
+					console.error('Error updating todo:', error);
+				}
+			}
+
+			async function deleteTodo(index) {
+				try {
+					const token = localStorage.getItem('token');
+					await axios.delete(`${API_URL}/todos/${index}`, {
+						headers: { Authorization: `Bearer ${token}` },
+					});
+					showTodos();
+				} catch (error) {
+					console.error('Error deleting todo:', error);
+				}
+			}
+
+			function showSignupForm() {
+				document.getElementById('signupForm').style.display = 'block';
+				document.getElementById('signinForm').style.display = 'none';
+			}
+
+			function showSigninForm() {
+				document.getElementById('signupForm').style.display = 'none';
+				document.getElementById('signinForm').style.display = 'block';
+			}
+
+			function logout() {
+				localStorage.removeItem('token');
+				document.getElementById('authForms').style.display = 'block';
+				document.getElementById('todoSection').style.display = 'none';
+			}
+		</script>
+	</head>
+	<body>
+		<!-- Authentication Forms -->
+		<div id="authForms">
+			<!-- Signup Form -->
+			<div id="signupForm">
+				<h2>Signup</h2>
+				<label for="signupUsername">Username:</label>
+				<input
+					type="text"
+					id="signupUsername" />
+				<label for="signupPassword">Password:</label>
+				<input
+					type="password"
+					id="signupPassword" />
+				<button onclick="signup()">Signup</button>
+				<button onclick="showSigninForm()">
+					Already have an account? Signin
+				</button>
+			</div>
+
+			<!-- Signin Form -->
+			<div
+				id="signinForm"
+				style="display: none">
+				<h2>Signin</h2>
+				<label for="signinUsername">Username:</label>
+				<input
+					type="text"
+					id="signinUsername" />
+				<label for="signinPassword">Password:</label>
+				<input
+					type="password"
+					id="signinPassword" />
+				<button onclick="signin()">Signin</button>
+				<button onclick="showSignupForm()">Back to Signup</button>
+			</div>
+		</div>
+
+		<!-- TODO Section -->
+		<div
+			id="todoSection"
+			style="display: none">
+			<h2>Your TODOs</h2>
+			<input
+				type="text"
+				id="todoText"
+				placeholder="Enter your todo" />
+			<button onclick="createTodo()">Add Todo</button>
+			<ul id="todoList"></ul>
+			<button onclick="logout()">Logout</button>
+		</div>
+	</body>
+</html>

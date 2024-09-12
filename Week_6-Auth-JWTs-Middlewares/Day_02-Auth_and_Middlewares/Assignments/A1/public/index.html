@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Auth Website</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+		<script>
+			// Function to check if user is logged in
+			function checkLoginStatus() {
+				const token = localStorage.getItem('token');
+				if (token) {
+					// If the token exists, show the logout button and user information
+					document.getElementById('authForms').style.display = 'none';
+					document.getElementById('logoutSection').style.display = 'block';
+					getUserInformation();
+				} else {
+					// If no token, show the signup form with a small signin button
+					document.getElementById('authForms').style.display = 'block';
+					document.getElementById('logoutSection').style.display = 'none';
+					showSignupForm();
+				}
+			}
+
+			// Function to show the signup form
+			function showSignupForm() {
+				document.getElementById('signupForm').style.display = 'block';
+				document.getElementById('signinForm').style.display = 'none';
+				document.getElementById('smallSigninButton').style.display =
+					'inline-block';
+			}
+
+			// Function to show the signin form
+			function showSigninForm() {
+				document.getElementById('signinForm').style.display = 'block';
+				document.getElementById('signupForm').style.display = 'none';
+				document.getElementById('smallSigninButton').style.display = 'none';
+				document.getElementById('backToSignupButton').style.display =
+					'inline-block';
+			}
+
+			// Signup function
+			async function signup() {
+				const username = document.getElementById('username').value;
+				const password = document.getElementById('password').value;
+				try {
+					await axios.post('http://localhost:3000/signup', {
+						username,
+						password,
+					});
+					alert('Signup successful! Please signin.');
+					showSigninForm(); // Show signin form after signup
+				} catch (error) {
+					alert('Signup failed');
+				}
+			}
+
+			// Signin function
+			async function signin() {
+				const username = document.getElementById('username_in').value;
+				const password = document.getElementById('password_in').value;
+				try {
+					const response = await axios.post('http://localhost:3000/signin', {
+						username,
+						password,
+					});
+					localStorage.setItem('token', response.data.token);
+					alert('Signed in successfully');
+					checkLoginStatus();
+				} catch (error) {
+					alert('Signin failed');
+				}
+			}
+
+			// Get user information
+			async function getUserInformation() {
+				try {
+					const token = localStorage.getItem('token');
+					const response = await axios.get('http://localhost:3000/me', {
+						headers: {
+							token: token,
+						},
+					});
+					document.getElementById('information').innerText = JSON.stringify(
+						response.data
+					);
+				} catch (error) {
+					console.error('Error fetching user information:', error);
+				}
+			}
+
+			// Logout function
+			function logout() {
+				localStorage.removeItem('token');
+				checkLoginStatus();
+			}
+
+			// Call to check login status on page load
+			checkLoginStatus();
+		</script>
+	</head>
+
+	<body>
+		<!-- Signup Form -->
+		<div id="authForms">
+			<div id="signupForm">
+				<form>
+					<h1>Signup</h1>
+					<label for="username">Username</label>
+					<input
+						type="text"
+						placeholder="username"
+						id="username" />
+					<label for="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						placeholder="password"
+						id="password" />
+					<button
+						type="button"
+						onclick="signup()">
+						Signup
+					</button>
+				</form>
+				<!-- Small Signin Button -->
+				<button
+					id="smallSigninButton"
+					style="display: inline-block; margin-top: 10px; font-size: 12px"
+					onclick="showSigninForm()">
+					<h1>Already have an account? <mark>Signin</mark></h1>
+				</button>
+			</div>
+
+			<!-- Signin Form -->
+			<div
+				id="signinForm"
+				style="display: none">
+				<form>
+					<h1>Signin</h1>
+					<label for="username_in">Username</label>
+					<input
+						type="text"
+						placeholder="username"
+						id="username_in" />
+					<label for="password_in">Password</label>
+					<input
+						type="password"
+						name="password"
+						placeholder="password"
+						id="password_in" />
+					<button
+						type="button"
+						onclick="signin()">
+						Signin
+					</button>
+				</form>
+				<!-- Back to Signup Button -->
+				<button
+					id="backToSignupButton"
+					style="display: inline-block; margin-top: 10px; font-size: 12px"
+					onclick="showSignupForm()">
+					<h1>Back to Signup</h1>
+				</button>
+			</div>
+		</div>
+
+		<!-- Logout and User Information Section -->
+		<div
+			id="logoutSection"
+			style="display: none">
+			<!-- User Information -->
+			<div>
+				User Information
+				<div id="information"></div>
+			</div>
+			<br />
+			<!-- Logout -->
+			<button onclick="logout()">Logout</button>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Auth website</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+		<script>
+			// signup function
+			async function signup() {
+				const username = document.getElementById('username').value;
+				const password = document.getElementById('password').value;
+				try {
+					await axios.post('http://localhost:3000/signup', {
+						username,
+						password,
+					});
+					alert('Signed up successfully');
+				} catch (error) {
+					alert('Invalid username or password');
+				}
+			}
+			// signin function
+			async function signin() {
+				const username = document.getElementById('username_in').value;
+				const password = document.getElementById('password_in').value;
+				try {
+					const response = await axios.post('http://localhost:3000/signin', {
+						username,
+						password,
+					});
+					localStorage.setItem('token', response.data.token);
+					alert('Signed in successfully');
+				} catch (error) {
+					alert('Invalid username or password');
+				}
+			}
+			// get user information
+			async function getUserInformation() {
+				try {
+					const token = localStorage.getItem('token');
+					const response = await axios.get('http://localhost:3000/me', {
+						headers: {
+							token: token,
+						},
+					});
+					document.getElementById('information').innerText = JSON.stringify(
+						response.data
+					);
+				} catch (error) {
+					console.error('Error fetching user information:', error);
+				}
+			}
+
+			getUserInformation();
+			// logout function
+			async function logout() {
+				localStorage.removeItem('token');
+			}
+		</script>
+	</head>
+
+	<body>
+		<!-- Signup -->
+		<form>
+			Signup <br />
+			<label for="username">Username</label>
+			<input
+				type="text"
+				placeholder="username"
+				id="username" />
+			<label for="password">Password</label>
+			<input
+				type="password"
+				name="password"
+				placeholder="password"
+				id="password" />
+			<button
+				type="button"
+				onclick="signup()">
+				Submit
+			</button>
+		</form>
+		<br />
+		<hr />
+		<!-- Signin -->
+		<form>
+			Signin <br />
+			<label for="username_in">Username</label>
+			<input
+				type="text"
+				placeholder="username"
+				id="username_in" />
+			<label for="password_in">Password</label>
+			<input
+				type="password"
+				name="password"
+				placeholder="password"
+				id="password_in" />
+			<button
+				type="button"
+				onclick="signin()">
+				Submit
+			</button>
+		</form>
+		<br />
+		<!-- create a user information -->
+		<div>
+			User Information
+			<div id="information"></div>
+		</div>
+		<br />
+		<!-- logout -->
+		<div>
+			<button onclick="logout()">Logout</button>
+		</div>
+	</body>
+</html>
