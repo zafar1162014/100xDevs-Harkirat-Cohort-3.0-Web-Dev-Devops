@@ -12,7 +12,7 @@ const {
 const mongoose = require('mongoose');
 const port = 3000;
 mongoose.connect(
-	'mongodb://zafarulhaq1162014:zafar116@cluster0-shard-00-00.u6xwu.mongodb.net:27017,cluster0-shard-00-01.u6xwu.mongodb.net:27017,cluster0-shard-00-02.u6xwu.mongodb.net:27017/?replicaSet=atlas-s8rk5x-shard-0&ssl=true&authSource=admin'
+	'mongodb://<username>:<password>@cluster0-shard-00-00.u6xwu.mongodb.net:27017,cluster0-shard-00-01.u6xwu.mongodb.net:27017,cluster0-shard-00-02.u6xwu.mongodb.net:27017/?replicaSet=atlas-s8rk5x-shard-0&ssl=true&authSource=admin'
 );
 const app = express();
 app.use(express.json());
