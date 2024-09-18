@@ -49,7 +49,6 @@ app.post('/signin', async (req, res) => {
 
 app.post('/todo', auth, async (req, res) => {
 	const { title, done } = req.body;
-	const userId = req.userId;
 	const userEmail = req.userEmail;
 	const isExist = await TodoModel.findOne({
 		title,

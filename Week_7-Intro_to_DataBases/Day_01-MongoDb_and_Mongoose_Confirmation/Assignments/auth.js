@@ -8,7 +8,6 @@ function auth(req, res, next) {
 	}
 	try {
 		const deconded = jwt.verify(token, JWT_SECRET);
-		req.userId = deconded.userId;
 		req.userEmail = deconded.email;
 		next();
 	} catch (error) {

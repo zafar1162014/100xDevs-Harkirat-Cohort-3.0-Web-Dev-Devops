@@ -1,7 +1,7 @@
+const { MongoOIDCError } = require('mongodb');
 const mongoose = require('mongoose');
-
+const { string } = require('zod');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
 
 const User = new Schema({
 	name: String,
@@ -10,7 +10,7 @@ const User = new Schema({
 });
 
 const Todo = new Schema({
-	userId: ObjectId,
+	userEmail: String,
 	title: String,
 	done: Boolean,
 });
