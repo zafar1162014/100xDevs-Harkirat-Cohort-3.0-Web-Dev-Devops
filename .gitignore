@@ -4,4 +4,6 @@
 
 # Ignore all package-lock.json files
 **/package-lock.json
+#ignore all .env files
+**/.env
 
